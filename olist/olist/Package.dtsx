@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="31"
-  DTS:VersionGUID="{7516353A-2A10-49D5-9D56-968F61DBA06C}">
+  DTS:VersionBuild="32"
+  DTS:VersionGUID="{9046C12A-39C1-45B9-A0A6-CCB765B3E89A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -8867,7 +8867,511 @@ LEFT JOIN product_category pc ON p.product_category_name =  pc.product_category_
           <DTS:Variables />
           <DTS:ObjectData>
             <pipeline
-              version="1" />
+              version="1">
+              <components>
+                <component
+                  refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[purchase_order_facts]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DENNIS\SQLSERVER2019.OlistWH]"
+                      connectionManagerRefId="Package.ConnectionManagers[DENNIS\SQLSERVER2019.OlistWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[order_id]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="order_id"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_id]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[purchase_timestamp]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="purchase_timestamp"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[purchase_timestamp]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[purchase_timestamp]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[payment_type]"
+                          cachedDataType="wstr"
+                          cachedLength="20"
+                          cachedName="payment_type"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[payment_type]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[price]"
+                          cachedDataType="r4"
+                          cachedName="price"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[price]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[price]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[freight_value]"
+                          cachedDataType="r4"
+                          cachedName="freight_value"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[freight_value]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[freight_value]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[product_id]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="product_id"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_product]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[product_id]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[seller_id]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="seller_id"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_seller]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[seller_id]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[customer_id]"
+                          cachedDataType="wstr"
+                          cachedLength="50"
+                          cachedName="customer_id"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_customer]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]" />
+                        <inputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[status]"
+                          cachedDataType="wstr"
+                          cachedLength="30"
+                          cachedName="status"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[status]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_id]"
+                          dataType="wstr"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_product]"
+                          dataType="wstr"
+                          length="50"
+                          name="fk_product" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_seller]"
+                          dataType="wstr"
+                          length="50"
+                          name="fk_seller" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_customer]"
+                          dataType="wstr"
+                          length="50"
+                          name="fk_customer" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_date]"
+                          dataType="wstr"
+                          length="50"
+                          name="fk_date" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[payment_type]"
+                          dataType="wstr"
+                          length="50"
+                          name="payment_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[price]"
+                          dataType="numeric"
+                          name="price"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[freight_value]"
+                          dataType="numeric"
+                          name="freight_value"
+                          precision="18"
+                          scale="2" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[order_status]"
+                          dataType="wstr"
+                          length="50"
+                          name="order_status" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[purchase_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="purchase_timestamp" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Sequence Container\Load Fact Orders\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT 
+    o.order_id,
+    o.customer_id,
+    o.status,
+    o.purchase_timestamp,
+    p.payment_type,
+    i.product_id,
+    i.seller_id,
+    i.price,
+    i.freight_value
+FROM orders o 
+LEFT JOIN payments p ON o.order_id = p.order_id
+LEFT JOIN order_items i ON o.order_id = i.order_id</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="Package.ConnectionManagers[DENNIS\SQLSERVER2019.Olist_db]"
+                      connectionManagerRefId="Package.ConnectionManagers[DENNIS\SQLSERVER2019.Olist_db]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_id]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[order_id]"
+                          name="order_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[customer_id]"
+                          name="customer_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[status]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                          length="30"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[status]"
+                          name="status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[purchase_timestamp]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[purchase_timestamp]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[purchase_timestamp]"
+                          name="purchase_timestamp"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[payment_type]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[payment_type]"
+                          length="20"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[payment_type]"
+                          name="payment_type"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[product_id]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[product_id]"
+                          name="product_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[seller_id]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[seller_id]"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[seller_id]"
+                          name="seller_id"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[price]"
+                          dataType="r4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[price]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[price]"
+                          name="price"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[freight_value]"
+                          dataType="r4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[freight_value]"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].Columns[freight_value]"
+                          name="freight_value"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[order_id]"
+                          dataType="wstr"
+                          length="50"
+                          name="order_id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[customer_id]"
+                          dataType="wstr"
+                          length="50"
+                          name="customer_id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[status]"
+                          dataType="wstr"
+                          length="30"
+                          name="status" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[purchase_timestamp]"
+                          dataType="dbTimeStamp"
+                          name="purchase_timestamp" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[payment_type]"
+                          dataType="wstr"
+                          length="20"
+                          name="payment_type" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                          dataType="wstr"
+                          length="50"
+                          name="product_id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[seller_id]"
+                          dataType="wstr"
+                          length="50"
+                          name="seller_id" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[price]"
+                          dataType="r4"
+                          name="price" />
+                        <externalMetadataColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[freight_value]"
+                          dataType="r4"
+                          name="freight_value" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[order_id]"
+                          name="order_id" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[customer_id]"
+                          name="customer_id" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[status]"
+                          dataType="wstr"
+                          length="30"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[status]"
+                          name="status" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[purchase_timestamp]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[purchase_timestamp]"
+                          name="purchase_timestamp" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[payment_type]"
+                          dataType="wstr"
+                          length="20"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[payment_type]"
+                          name="payment_type" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                          name="product_id" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[seller_id]"
+                          dataType="wstr"
+                          length="50"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[seller_id]"
+                          name="seller_id" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[price]"
+                          dataType="r4"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[price]"
+                          name="price" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[freight_value]"
+                          dataType="r4"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[freight_value]"
+                          name="freight_value" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Sequence Container\Load Fact Orders.Paths[OLE DB Source Output]"
+                  endId="Package\Sequence Container\Load Fact Orders\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Sequence Container\Load Fact Orders\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -9107,7 +9611,7 @@ LEFT JOIN product_category pc ON p.product_category_name =  pc.product_category_
         <NodeLayout
           Size="159,42"
           Id="Package\Sequence Container\Load Fact Orders"
-          TopLeft="21,201" />
+          TopLeft="28,195" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -10328,6 +10832,77 @@ LEFT JOIN product_category pc ON p.product_category_name =  pc.product_category_
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Sequence Container\Load Dim Product\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Load Fact Orders">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Sequence Container\Load Fact Orders\OLE DB Source"
+          TopLeft="577,203" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sequence Container\Load Fact Orders\OLE DB Destination"
+          TopLeft="593,416" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Load Fact Orders.Paths[OLE DB Source Output]"
+          TopLeft="652,245">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="26.5,171"
+              Start="0,0"
+              End="26.5,163.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,81.5"
+                    Point2="0,85.5"
+                    Point3="4,85.5" />
+                  <mssgle:LineSegment
+                    End="22.5,85.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="22.5,85.5"
+                    Point2="26.5,85.5"
+                    Point3="26.5,89.5" />
+                  <mssgle:LineSegment
+                    End="26.5,163.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Load Fact Orders\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Load Fact Orders\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
