@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="OLIST_OLTP_CONNECTION"
+  DTS:DTSID="{346BEE89-CAB2-46FE-8A06-B1E49070F35E}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=DENNIS\SQLSERVER2019;Initial Catalog=OLIST_OLTP;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{346BEE89-CAB2-46FE-8A06-B1E49070F35E}DENNIS\SQLSERVER2019.OLIST_OLTP;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

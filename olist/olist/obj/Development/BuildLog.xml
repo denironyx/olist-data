@@ -2,13 +2,23 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>olist</Name>
-    <LastWriteTime>2022-11-21T07:52:56.6100627Z</LastWriteTime>
+    <LastWriteTime>2022-12-31T13:23:32.0085995Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
-      <Name>Package.dtsx</Name>
-      <LastWriteTime>2022-11-21T09:01:20.7582493Z</LastWriteTime>
+      <Name>OLIST STAGING AREA.dtsx</Name>
+      <LastWriteTime>2023-01-04T14:15:06.3264127Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>OLIST OLTP DATABASE.dtsx</Name>
+      <LastWriteTime>2022-12-31T10:29:04.5277423Z</LastWriteTime>
+      <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
+    </ProjectBuildItemInfo>
+    <ProjectBuildItemInfo>
+      <Name>OLIST WAREHOUSE.dtsx</Name>
+      <LastWriteTime>2023-01-04T19:17:01.2495554Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
