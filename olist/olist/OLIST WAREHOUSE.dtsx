@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{D5952855-CDA5-4512-BEC0-0AB512207997}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{CFE5808F-8A81-4909-820E-6CA9022E2A6E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -7393,7 +7393,7 @@ where [refTable].[bk_seller] = ?</property>
             SQLTask:DataType="130"
             SQLTask:ParameterSize="-1" />
           <SQLTask:ParameterBinding
-            SQLTask:ParameterName="NewParameterName"
+            SQLTask:ParameterName="1"
             SQLTask:DtsVariableName="User::SALES_ROW_COUNT"
             SQLTask:ParameterDirection="Input"
             SQLTask:DataType="3"

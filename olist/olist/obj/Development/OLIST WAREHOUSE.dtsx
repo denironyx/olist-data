@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="32"
-  DTS:VersionGUID="{51458DF1-81C9-4B8F-9C77-B4812D8E7C59}">
+  DTS:VersionBuild="37"
+  DTS:VersionGUID="{CFE5808F-8A81-4909-820E-6CA9022E2A6E}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,7 +39,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="ETL_NAME">
       <DTS:VariableValue
-        DTS:DataType="8">DW ETL ID: 1/4/2023 7:17:01 PM</DTS:VariableValue>
+        DTS:DataType="8">DW ETL ID: 1/4/2023 8:30:29 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -70,7 +70,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Customer"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -86,7 +86,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Date"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -102,7 +102,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Payment"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -118,7 +118,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Product"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -134,7 +134,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Seller"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6025,17 +6025,17 @@
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Load Fact table"
+      DTS:refId="Package\Load the Fact table to the Data Warehouse"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
       DTS:DTSID="{08D41644-E42E-477A-A01A-8859C701BB50}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Load Fact table">
+      DTS:ObjectName="Load the Fact table to the Data Warehouse">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\Load Fact table\Load Fact Sales"
+          DTS:refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
           DTS:DTSID="{B13205F9-ECC3-4154-9618-1C4102A6ACE9}"
@@ -6049,7 +6049,7 @@
               version="1">
               <components>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK"
                   componentClassID="Microsoft.Lookup"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
                   description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -6109,7 +6109,7 @@ where [refTable].[bk_customer] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]};</property>
+                      name="ParameterMap">#{Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]};</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -6121,7 +6121,7 @@ where [refTable].[bk_customer] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Connections[OleDbConnection]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[OLIST_DWH]"
                       connectionManagerRefId="Package.ConnectionManagers[OLIST_DWH]"
                       description="Connection manager used to access lookup data."
@@ -6129,15 +6129,15 @@ where [refTable].[bk_customer] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]"
                       name="Lookup Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input].Columns[fk_customer]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input].Columns[fk_customer]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="fk_customer"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]">
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]">
                           <properties>
                             <property
                               dataType="System.String"
@@ -6155,18 +6155,18 @@ where [refTable].[bk_customer] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
                       errorRowDisposition="FailComponent"
                       exclusionGroup="1"
                       name="Lookup Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output].Columns[sk_customer]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output].Columns[sk_customer]"
                           dataType="i4"
                           errorOrTruncationOperation="Copy Column"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output].Columns[sk_customer]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output].Columns[sk_customer]"
                           name="sk_customer"
                           truncationRowDisposition="FailComponent">
                           <properties>
@@ -6180,30 +6180,30 @@ where [refTable].[bk_customer] = ?</property>
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup No Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup No Match Output]"
                       description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                       exclusionGroup="1"
                       name="Lookup No Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Lookup Error Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -6212,7 +6212,7 @@ where [refTable].[bk_customer] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK"
                   componentClassID="Microsoft.Lookup"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
                   description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -6268,7 +6268,7 @@ where [refTable].[proper_date] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]};</property>
+                      name="ParameterMap">#{Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]};</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -6280,7 +6280,7 @@ where [refTable].[proper_date] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Connections[OleDbConnection]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[OLIST_DWH]"
                       connectionManagerRefId="Package.ConnectionManagers[OLIST_DWH]"
                       description="Connection manager used to access lookup data."
@@ -6288,14 +6288,14 @@ where [refTable].[proper_date] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]"
                       name="Lookup Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input].Columns[fk_date]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input].Columns[fk_date]"
                           cachedDataType="dbDate"
                           cachedName="fk_date"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]">
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]">
                           <properties>
                             <property
                               dataType="System.String"
@@ -6313,18 +6313,18 @@ where [refTable].[proper_date] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
                       errorRowDisposition="FailComponent"
                       exclusionGroup="1"
                       name="Lookup Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output].Columns[sk_date]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output].Columns[sk_date]"
                           dataType="i4"
                           errorOrTruncationOperation="Copy Column"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output].Columns[sk_date]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output].Columns[sk_date]"
                           name="sk_date"
                           truncationRowDisposition="FailComponent">
                           <properties>
@@ -6338,30 +6338,30 @@ where [refTable].[proper_date] = ?</property>
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup No Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup No Match Output]"
                       description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                       exclusionGroup="1"
                       name="Lookup No Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Lookup Error Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -6370,7 +6370,7 @@ where [refTable].[proper_date] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK"
                   componentClassID="Microsoft.Lookup"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
                   description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -6434,7 +6434,7 @@ where [refTable].[bk_payment] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]};</property>
+                      name="ParameterMap">#{Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]};</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -6446,7 +6446,7 @@ where [refTable].[bk_payment] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Connections[OleDbConnection]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[OLIST_DWH]"
                       connectionManagerRefId="Package.ConnectionManagers[OLIST_DWH]"
                       description="Connection manager used to access lookup data."
@@ -6454,15 +6454,15 @@ where [refTable].[bk_payment] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]"
                       name="Lookup Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input].Columns[fk_payment]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input].Columns[fk_payment]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="fk_payment"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]">
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]">
                           <properties>
                             <property
                               dataType="System.String"
@@ -6480,18 +6480,18 @@ where [refTable].[bk_payment] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
                       errorRowDisposition="IgnoreFailure"
                       exclusionGroup="1"
                       name="Lookup Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output].Columns[sk_payment]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output].Columns[sk_payment]"
                           dataType="i4"
                           errorOrTruncationOperation="Copy Column"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output].Columns[sk_payment]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output].Columns[sk_payment]"
                           name="sk_payment"
                           truncationRowDisposition="IgnoreFailure">
                           <properties>
@@ -6505,30 +6505,30 @@ where [refTable].[bk_payment] = ?</property>
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup No Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup No Match Output]"
                       description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                       exclusionGroup="1"
                       name="Lookup No Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Lookup Error Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -6537,7 +6537,7 @@ where [refTable].[bk_payment] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK"
                   componentClassID="Microsoft.Lookup"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
                   description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -6597,7 +6597,7 @@ where [refTable].[bk_product] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]};</property>
+                      name="ParameterMap">#{Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]};</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -6609,7 +6609,7 @@ where [refTable].[bk_product] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Connections[OleDbConnection]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[OLIST_DWH]"
                       connectionManagerRefId="Package.ConnectionManagers[OLIST_DWH]"
                       description="Connection manager used to access lookup data."
@@ -6617,15 +6617,15 @@ where [refTable].[bk_product] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]"
                       name="Lookup Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input].Columns[fk_product]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input].Columns[fk_product]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="fk_product"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]">
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]">
                           <properties>
                             <property
                               dataType="System.String"
@@ -6643,18 +6643,18 @@ where [refTable].[bk_product] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
                       errorRowDisposition="IgnoreFailure"
                       exclusionGroup="1"
                       name="Lookup Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output].Columns[sk_product]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output].Columns[sk_product]"
                           dataType="i4"
                           errorOrTruncationOperation="Copy Column"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output].Columns[sk_product]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output].Columns[sk_product]"
                           name="sk_product"
                           truncationRowDisposition="IgnoreFailure">
                           <properties>
@@ -6668,30 +6668,30 @@ where [refTable].[bk_product] = ?</property>
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup No Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup No Match Output]"
                       description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                       exclusionGroup="1"
                       name="Lookup No Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Lookup Error Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -6700,7 +6700,7 @@ where [refTable].[bk_product] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller"
                   componentClassID="Microsoft.Lookup"
                   contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
                   description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -6756,7 +6756,7 @@ where [refTable].[bk_seller] = ?</property>
                       containsID="true"
                       dataType="System.String"
                       description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                      name="ParameterMap">#{Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]};</property>
+                      name="ParameterMap">#{Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]};</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -6768,7 +6768,7 @@ where [refTable].[bk_seller] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Connections[OleDbConnection]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[OLIST_DWH]"
                       connectionManagerRefId="Package.ConnectionManagers[OLIST_DWH]"
                       description="Connection manager used to access lookup data."
@@ -6776,15 +6776,15 @@ where [refTable].[bk_seller] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]"
                       name="Lookup Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input].Columns[fk_seller]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input].Columns[fk_seller]"
                           cachedDataType="wstr"
                           cachedLength="50"
                           cachedName="fk_seller"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]">
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]">
                           <properties>
                             <property
                               dataType="System.String"
@@ -6802,18 +6802,18 @@ where [refTable].[bk_seller] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
                       errorRowDisposition="FailComponent"
                       exclusionGroup="1"
                       name="Lookup Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output].Columns[sk_seller]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output].Columns[sk_seller]"
                           dataType="i4"
                           errorOrTruncationOperation="Copy Column"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output].Columns[sk_seller]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output].Columns[sk_seller]"
                           name="sk_seller"
                           truncationRowDisposition="FailComponent">
                           <properties>
@@ -6827,30 +6827,30 @@ where [refTable].[bk_seller] = ?</property>
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup No Match Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup No Match Output]"
                       description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                       exclusionGroup="1"
                       name="Lookup No Match Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="Lookup Error Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -6859,45 +6859,45 @@ where [refTable].[bk_seller] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\Multicast"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast"
                   componentClassID="Microsoft.Multicast"
                   contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
                   name="Multicast">
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\Multicast.Inputs[Multicast Input 1]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Inputs[Multicast Input 1]"
                       name="Multicast Input 1">
                       <externalMetadataColumns />
                     </input>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Multicast.Outputs[Multicast Output 1]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Outputs[Multicast Output 1]"
                       deleteOutputOnPathDetached="true"
                       name="Multicast Output 1"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Multicast.Outputs[Multicast Output 2]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Outputs[Multicast Output 2]"
                       deleteOutputOnPathDetached="true"
                       name="Multicast Output 2"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
                       <externalMetadataColumns />
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Multicast.Outputs[Multicast Output 3]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Outputs[Multicast Output 3]"
                       dangling="true"
                       deleteOutputOnPathDetached="true"
                       name="Multicast Output 3"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
                       <externalMetadataColumns />
                     </output>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
@@ -6954,7 +6954,7 @@ where [refTable].[bk_seller] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Connections[OleDbConnection]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[OLIST_DWH]"
                       connectionManagerRefId="Package.ConnectionManagers[OLIST_DWH]"
                       description="The OLE DB runtime connection used to access the database."
@@ -6962,83 +6962,83 @@ where [refTable].[bk_seller] = ?</property>
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="IgnoreFailure"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sales_revenue]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sales_revenue]"
                           cachedDataType="i4"
                           cachedName="sales_revenue"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_revenue]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_revenue]" />
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_revenue]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_revenue]" />
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sales_qty]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sales_qty]"
                           cachedDataType="i4"
                           cachedName="sales_qty"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_qty]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_qty]" />
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_qty]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_qty]" />
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_product]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_product]"
                           cachedDataType="i4"
                           cachedName="sk_product"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_product]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output].Columns[sk_product]" />
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_product]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output].Columns[sk_product]" />
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_seller]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_seller]"
                           cachedDataType="i4"
                           cachedName="sk_seller"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_seller]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output].Columns[sk_seller]" />
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_seller]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output].Columns[sk_seller]" />
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_customer]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_customer]"
                           cachedDataType="i4"
                           cachedName="sk_customer"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_customer]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output].Columns[sk_customer]" />
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_customer]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output].Columns[sk_customer]" />
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_date]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_date]"
                           cachedDataType="i4"
                           cachedName="sk_date"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_date]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output].Columns[sk_date]" />
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_date]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output].Columns[sk_date]" />
                         <inputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_payment]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[sk_payment]"
                           cachedDataType="i4"
                           cachedName="sk_payment"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_payment]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output].Columns[sk_payment]" />
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_payment]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output].Columns[sk_payment]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_product]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_product]"
                           dataType="i4"
                           name="fk_product" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_seller]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_seller]"
                           dataType="i4"
                           name="fk_seller" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_customer]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_customer]"
                           dataType="i4"
                           name="fk_customer" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_date]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_date]"
                           dataType="i4"
                           name="fk_date" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_payment]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[fk_payment]"
                           dataType="i4"
                           name="fk_payment" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_revenue]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_revenue]"
                           dataType="i4"
                           name="sales_revenue" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_qty]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sales_qty]"
                           dataType="i4"
                           name="sales_qty" />
                       </externalMetadataColumns>
@@ -7046,22 +7046,22 @@ where [refTable].[bk_seller] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -7070,7 +7070,7 @@ where [refTable].[bk_seller] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\OLE DB Source"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
@@ -7119,7 +7119,7 @@ where [refTable].[bk_seller] = ?</property>
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Connections[OleDbConnection]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Connections[OleDbConnection]"
                       connectionManagerID="{4E57C5D4-F1D4-4EFF-96C8-6A2C89B6EB85}:external"
                       connectionManagerRefId="Project.ConnectionManagers[OLIST_STG]"
                       description="The OLE DB runtime connection used to access the database."
@@ -7127,167 +7127,167 @@ where [refTable].[bk_seller] = ?</property>
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_product]"
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_product]"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_product]"
                           name="fk_product"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_seller]"
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_seller]"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_seller]"
                           name="fk_seller"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_customer]"
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_customer]"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_customer]"
                           name="fk_customer"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]"
                           dataType="dbDate"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_date]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]"
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_date]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_date]"
                           name="fk_date"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_payment]"
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_payment]"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[fk_payment]"
                           name="fk_payment"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_revenue]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_revenue]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_revenue]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_revenue]"
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_revenue]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_revenue]"
                           name="sales_revenue"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_qty]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_qty]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_qty]"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_qty]"
+                          externalMetadataColumnId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_qty]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].Columns[sales_qty]"
                           name="sales_qty"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_product]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_product]"
                           dataType="wstr"
                           length="50"
                           name="fk_product" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_seller]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_seller]"
                           dataType="wstr"
                           length="50"
                           name="fk_seller" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_customer]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_customer]"
                           dataType="wstr"
                           length="50"
                           name="fk_customer" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_date]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_date]"
                           dataType="dbDate"
                           name="fk_date" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_payment]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[fk_payment]"
                           dataType="wstr"
                           length="50"
                           name="fk_payment" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_revenue]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_revenue]"
                           dataType="i4"
                           name="sales_revenue" />
                         <externalMetadataColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_qty]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[sales_qty]"
                           dataType="i4"
                           name="sales_qty" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_product]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_product]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_product]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_product]"
                           name="fk_product" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_seller]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_seller]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_seller]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_seller]"
                           name="fk_seller" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_customer]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_customer]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_customer]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_customer]"
                           name="fk_customer" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_date]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_date]"
                           dataType="dbDate"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_date]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_date]"
                           name="fk_date" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_payment]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_payment]"
                           dataType="wstr"
                           length="50"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_payment]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[fk_payment]"
                           name="fk_payment" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_revenue]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_revenue]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_revenue]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_revenue]"
                           name="sales_revenue" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_qty]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_qty]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_qty]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[sales_qty]"
                           name="sales_qty" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -7296,7 +7296,7 @@ where [refTable].[bk_seller] = ?</property>
                   </outputs>
                 </component>
                 <component
-                  refId="Package\Load Fact table\Load Fact Sales\Row Count"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Row Count"
                   componentClassID="Microsoft.RowCount"
                   contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
                   description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
@@ -7309,7 +7309,7 @@ where [refTable].[bk_seller] = ?</property>
                   </properties>
                   <inputs>
                     <input
-                      refId="Package\Load Fact table\Load Fact Sales\Row Count.Inputs[Row Count Input 1]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Row Count.Inputs[Row Count Input 1]"
                       hasSideEffects="true"
                       name="Row Count Input 1">
                       <externalMetadataColumns />
@@ -7317,9 +7317,9 @@ where [refTable].[bk_seller] = ?</property>
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\Load Fact table\Load Fact Sales\Row Count.Outputs[Row Count Output 1]"
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Row Count.Outputs[Row Count Output 1]"
                       name="Row Count Output 1"
-                      synchronousInputId="Package\Load Fact table\Load Fact Sales\Row Count.Inputs[Row Count Input 1]">
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Row Count.Inputs[Row Count Input 1]">
                       <externalMetadataColumns />
                     </output>
                   </outputs>
@@ -7327,50 +7327,171 @@ where [refTable].[bk_seller] = ?</property>
               </components>
               <paths>
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output]"
-                  endId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]"
                   name="Lookup Match Output"
-                  startId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Outputs[Lookup Match Output]" />
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output1]"
-                  endId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output1]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Inputs[Lookup Input]"
                   name="Lookup Match Output"
-                  startId="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Outputs[Lookup Match Output]" />
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output2]"
-                  endId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output2]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]"
                   name="Lookup Match Output"
-                  startId="Package\Load Fact table\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller.Outputs[Lookup Match Output]" />
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output3]"
-                  endId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output3]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]"
                   name="Lookup Match Output"
-                  startId="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output]" />
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output4]"
-                  endId="Package\Load Fact table\Load Fact Sales\Multicast.Inputs[Multicast Input 1]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output4]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Inputs[Multicast Input 1]"
                   name="Lookup Match Output"
-                  startId="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output]" />
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[Multicast Output 1]"
-                  endId="Package\Load Fact table\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Multicast Output 1]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   name="Multicast Output 1"
-                  startId="Package\Load Fact table\Load Fact Sales\Multicast.Outputs[Multicast Output 1]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Outputs[Multicast Output 1]" />
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[Multicast Output 2]"
-                  endId="Package\Load Fact table\Load Fact Sales\Row Count.Inputs[Row Count Input 1]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Multicast Output 2]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Row Count.Inputs[Row Count Input 1]"
                   name="Multicast Output 2"
-                  startId="Package\Load Fact table\Load Fact Sales\Multicast.Outputs[Multicast Output 2]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Outputs[Multicast Output 2]" />
                 <path
-                  refId="Package\Load Fact table\Load Fact Sales.Paths[OLE DB Source Output]"
-                  endId="Package\Load Fact table\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]"
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[OLE DB Source Output]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK.Inputs[Lookup Input]"
                   name="OLE DB Source Output"
-                  startId="Package\Load Fact table\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output]" />
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Count Sales Rows"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{DCA48871-67A7-47F2-8F5E-249F90D6AED2}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Count Sales Rows"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E57C5D4-F1D4-4EFF-96C8-6A2C89B6EB85}"
+          SQLTask:SqlStatementSource="INSERT INTO log_stg_etl (etl_name, etl_desc)&#xA;VALUES (?, 'Number of Sales rows loaded were: ' + cast(? AS NVARCHAR(12)));" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ETL_NAME"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="1"
+            SQLTask:DtsVariableName="User::SALES_ROW_COUNT"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="3"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log End of DW ETL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{d0c64a99-9a32-49d4-afd3-3c3132f8b888}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log End of DW ETL"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E57C5D4-F1D4-4EFF-96C8-6A2C89B6EB85}"
+          SQLTask:SqlStatementSource="INSERT INTO log_stg_etl (etl_name, etl_desc)&#xA;VALUES (?, 'ETL for DATA WAREHOUSE has ended');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ETL_NAME"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Loaded Dimensions"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{ae35c664-9327-4d10-8ea8-a1a7bcc96212}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Loaded Dimensions"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E57C5D4-F1D4-4EFF-96C8-6A2C89B6EB85}"
+          SQLTask:SqlStatementSource="INSERT INTO log_stg_etl (etl_name, etl_desc)&#xA;VALUES (?, 'Loaded ALL Dimension tables in the Data Warehouse');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ETL_NAME"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Loaded Facts"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{22ee7d7e-9196-4543-be4b-c5ea99f2c18d}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Loaded Facts"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E57C5D4-F1D4-4EFF-96C8-6A2C89B6EB85}"
+          SQLTask:SqlStatementSource="INSERT INTO log_stg_etl (etl_name, etl_desc)&#xA;VALUES (?, 'Loaded ALL Fact tables in the Data Warehouse');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ETL_NAME"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Log Start of DW ETL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{1B0385EF-76EB-4ECE-A69A-9D954C64E4ED}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Log Start of DW ETL"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{4E57C5D4-F1D4-4EFF-96C8-6A2C89B6EB85}"
+          SQLTask:SqlStatementSource="INSERT INTO log_stg_etl (etl_name, etl_desc)&#xA;VALUES (?, 'Start of ETL tasks: loading Data Warehouse...');" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ParameterBinding
+            SQLTask:ParameterName="0"
+            SQLTask:DtsVariableName="User::ETL_NAME"
+            SQLTask:ParameterDirection="Input"
+            SQLTask:DataType="130"
+            SQLTask:ParameterSize="-1" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Truncate FACT"
@@ -7425,7 +7546,47 @@ where [refTable].[bk_seller] = ?</property>
       DTS:From="Package\Load Dimensions"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 2"
-      DTS:To="Package\Load Fact table" />
+      DTS:To="Package\Load the Fact table to the Data Warehouse" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{566E92BA-65F9-448F-8F45-E984E30A0B4A}"
+      DTS:From="Package\Log Start of DW ETL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Truncate FACT" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{B8C54B03-226E-466F-AA3D-95141416659B}"
+      DTS:From="Package\Load Dimensions"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Log Loaded Dimensions" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{91768DC7-E64A-4B34-8B2F-F08B7F7BEA86}"
+      DTS:From="Package\Load the Fact table to the Data Warehouse"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Log Loaded Facts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{4FF7A5DE-3B91-4FBE-B849-1051FF2D3824}"
+      DTS:From="Package\Log Loaded Facts"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Log Count Sales Rows" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{AD4F50CE-03E4-4D1F-96F9-B81C69D7A92B}"
+      DTS:From="Package\Log Count Sales Rows"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Log End of DW ETL" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
 <!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
@@ -7562,14 +7723,14 @@ where [refTable].[bk_seller] = ?</property>
         </EdgeLayout>
         <NodeLayout
           Size="152,42"
-          Id="Package\Load Fact table\Load Fact Sales"
-          TopLeft="49,28" />
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales"
+          TopLeft="50,27" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="237,126"
-          Size="237,169"
-          Id="Package\Load Fact table"
+          PanelSize="330,126"
+          Size="330,169"
+          Id="Package\Load the Fact table to the Data Warehouse"
           TopLeft="575,1215" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 2]"
@@ -7577,9 +7738,9 @@ where [refTable].[bk_seller] = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-13.5,99"
+              EndConnector="33,99"
               Start="0,0"
-              End="-13.5,91.5">
+              End="33,91.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -7588,15 +7749,193 @@ where [refTable].[bk_seller] = ?</property>
                   <mssgle:CubicBezierSegment
                     Point1="0,45.5"
                     Point2="0,49.5"
-                    Point3="-4,49.5" />
+                    Point3="4,49.5" />
                   <mssgle:LineSegment
-                    End="-9.5,49.5" />
+                    End="29,49.5" />
                   <mssgle:CubicBezierSegment
-                    Point1="-9.5,49.5"
-                    Point2="-13.5,49.5"
-                    Point3="-13.5,53.5" />
+                    Point1="29,49.5"
+                    Point2="33,49.5"
+                    Point3="33,53.5" />
                   <mssgle:LineSegment
-                    End="-13.5,91.5" />
+                    End="33,91.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Log Start of DW ETL"
+          TopLeft="583,49" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="670.5,91">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,57"
+              Start="0,0"
+              End="15.5,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.5"
+                    Point2="0,28.5"
+                    Point3="4,28.5" />
+                  <mssgle:LineSegment
+                    End="11.5,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,28.5"
+                    Point2="15.5,28.5"
+                    Point3="15.5,32.5" />
+                  <mssgle:LineSegment
+                    End="15.5,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="191,42"
+          Id="Package\Log Loaded Dimensions"
+          TopLeft="1156,910" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="958,959.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="198,-28.5"
+              Start="0,0"
+              End="190.5,-28.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="95,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="95,0"
+                    Point2="99,0"
+                    Point3="99,-4" />
+                  <mssgle:LineSegment
+                    End="99,-24.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="99,-24.5"
+                    Point2="99,-28.5"
+                    Point3="103,-28.5" />
+                  <mssgle:LineSegment
+                    End="190.5,-28.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="161,42"
+          Id="Package\Log Loaded Facts"
+          TopLeft="1092,1282" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="905,1301.25">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="187,0"
+              Start="0,0"
+              End="179.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="179.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="183,42"
+          Id="Package\Log Count Sales Rows"
+          TopLeft="1095,1370" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="1172.5,1324">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="14,46"
+              Start="0,0"
+              End="14,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,19" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="4,23" />
+                  <mssgle:LineSegment
+                    End="10,23" />
+                  <mssgle:CubicBezierSegment
+                    Point1="10,23"
+                    Point2="14,23"
+                    Point3="14,27" />
+                  <mssgle:LineSegment
+                    End="14,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Log End of DW ETL"
+          TopLeft="446,1472" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="1186.5,1412">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-655,60"
+              Start="0,0"
+              End="-655,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="-4,30" />
+                  <mssgle:LineSegment
+                    End="-651,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-651,30"
+                    Point2="-655,30"
+                    Point3="-655,34" />
+                  <mssgle:LineSegment
+                    End="-655,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -9136,20 +9475,20 @@ where [refTable].[bk_seller] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\Load Fact table\Load Fact Sales">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales">
     <LayoutInfo>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
-          Id="Package\Load Fact table\Load Fact Sales\OLE DB Source"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source"
           TopLeft="400,89" />
         <NodeLayout
           Size="170,42"
-          Id="Package\Load Fact table\Load Fact Sales\Lookup for Date FK"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK"
           TopLeft="398,222" />
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[OLE DB Source Output]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[OLE DB Source Output]"
           TopLeft="475,131">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9184,30 +9523,30 @@ where [refTable].[bk_seller] = ?</property>
         </EdgeLayout>
         <NodeLayout
           Size="207,42"
-          Id="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK"
           TopLeft="395,730" />
         <NodeLayout
           Size="212,42"
-          Id="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK"
           TopLeft="394,342" />
         <NodeLayout
           Size="189,42"
-          Id="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK"
           TopLeft="401,597" />
         <NodeLayout
           Size="159,42"
-          Id="Package\Load Fact table\Load Fact Sales\Lookup for Seller"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller"
           TopLeft="426,484" />
         <NodeLayout
           Size="120,42"
-          Id="Package\Load Fact table\Load Fact Sales\Multicast"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast"
           TopLeft="441,867" />
         <NodeLayout
           Size="171,42"
-          Id="Package\Load Fact table\Load Fact Sales\OLE DB Destination"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination"
           TopLeft="412,957" />
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[Multicast Output 1]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Multicast Output 1]"
           TopLeft="482.333333333333,909">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9242,10 +9581,10 @@ where [refTable].[bk_seller] = ?</property>
         </EdgeLayout>
         <NodeLayout
           Size="130,42"
-          Id="Package\Load Fact table\Load Fact Sales\Row Count"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Row Count"
           TopLeft="814,977" />
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[Multicast Output 2]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Multicast Output 2]"
           TopLeft="519.666666666667,909">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9279,7 +9618,7 @@ where [refTable].[bk_seller] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output]"
           TopLeft="483,264">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9315,7 +9654,7 @@ where [refTable].[bk_seller] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output1]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output1]"
           TopLeft="502.75,384">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9339,7 +9678,7 @@ where [refTable].[bk_seller] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output2]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output2]"
           TopLeft="505.5,526">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9375,7 +9714,7 @@ where [refTable].[bk_seller] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output3]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output3]"
           TopLeft="497,639">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9399,7 +9738,7 @@ where [refTable].[bk_seller] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Fact table\Load Fact Sales.Paths[Lookup Match Output4]"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output4]"
           TopLeft="499.75,772">
           <EdgeLayout.Curve>
             <mssgle:Curve
@@ -9426,7 +9765,7 @@ where [refTable].[bk_seller] = ?</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact table\Load Fact Sales\OLE DB Source">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -9439,7 +9778,7 @@ where [refTable].[bk_seller] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact table\Load Fact Sales\Lookup for Date FK">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Date FK">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -9462,7 +9801,7 @@ where [refTable].[bk_seller] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact table\Load Fact Sales\Lookup for Product SCD FK">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -9485,7 +9824,7 @@ where [refTable].[bk_seller] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact table\Load Fact Sales\Lookup for Customer scd FK">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -9508,7 +9847,7 @@ where [refTable].[bk_seller] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact table\Load Fact Sales\Lookup for Payment FK">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -9531,7 +9870,7 @@ where [refTable].[bk_seller] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact table\Load Fact Sales\Lookup for Seller">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Seller">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
@@ -9554,7 +9893,7 @@ where [refTable].[bk_seller] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Fact table\Load Fact Sales\OLE DB Destination">
+    design-time-name="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
