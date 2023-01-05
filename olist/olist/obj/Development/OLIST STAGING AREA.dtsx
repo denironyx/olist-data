@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="81"
-  DTS:VersionGUID="{33E599D2-49F3-4265-98A0-D67E850D6B18}">
+  DTS:VersionBuild="85"
+  DTS:VersionGUID="{9574ED7E-AB3E-4345-ACFE-06173D2CEFD6}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -803,7 +803,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="ETL_NAME">
       <DTS:VariableValue
-        DTS:DataType="8">STG ETL ID: 1/4/2023 2:15:17 PM</DTS:VariableValue>
+        DTS:DataType="8">STG ETL ID: 1/5/2023 12:22:55 AM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -843,7 +843,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_Customer"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -859,7 +859,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_Date"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -875,7 +875,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_Payment"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -891,7 +891,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_Product"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -907,7 +907,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_seller"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3652,13 +3652,16 @@ FROM orders o
 --LEFT JOIN order_items i ON o.order_id = i.order_id
 INNER JOIN (SELECT 
 			order_id, 
-			product_id,
+			i.product_id,
 			seller_id,
-			count(distinct product_id) as quantity,
+			count(i.product_id) as quantity,
 			ROUND(SUM(price) + SUM(freight_value),2) as sales_revenue
-		FROM order_items
-		group by product_id, order_id, seller_id) i
- ON o.order_id = i.order_id</property>
+		FROM order_items i
+		LEFT JOIN products p on i.product_id = p.product_id
+		where p.product_id is not null
+		group by i.product_id, order_id, seller_id) i
+ ON o.order_id = i.order_id
+ WHERE o.order_id in (SELECT p.order_id from payments p)</property>
                     <property
                       dataType="System.String"
                       description="The variable that contains the SQL command to be executed."
@@ -3885,7 +3888,7 @@ INNER JOIN (SELECT
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log Count Sales Row"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -3960,7 +3963,7 @@ INNER JOIN (SELECT
       DTS:ExecutableType="Microsoft.ExecuteSQLTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="Log Tables are Loaded"
-      DTS:ThreadHint="0">
+      DTS:ThreadHint="1">
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
@@ -4104,7 +4107,7 @@ INNER JOIN (SELECT
         <NodeLayout
           Size="152,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales"
-          TopLeft="28,195" />
+          TopLeft="28,194" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
@@ -4535,7 +4538,7 @@ INNER JOIN (SELECT
     design-time-name="Package\Load Dimension and Fact Data to Staging Area\Load Dim Seller">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Dim Seller\OLE DB Source"
@@ -4575,9 +4578,7 @@ INNER JOIN (SELECT
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="0,0,0,0"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4621,25 +4622,37 @@ INNER JOIN (SELECT
         <NodeLayout
           Size="209,43"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Convert Timestamp to Date"
-          TopLeft="546,341" />
+          TopLeft="546,364" />
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\OLE DB Source"
-          TopLeft="577,203" />
+          TopLeft="576,184" />
         <EdgeLayout
-          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[OLE DB Source Output]"
-          TopLeft="651.25,245">
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Data Conversion Output]"
+          TopLeft="650.5,407">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,96"
+              EndConnector="12,197"
               Start="0,0"
-              End="0,88.5">
+              End="12,189.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,88.5" />
+                    End="0,94.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,94.5"
+                    Point2="0,98.5"
+                    Point3="4,98.5" />
+                  <mssgle:LineSegment
+                    End="8,98.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8,98.5"
+                    Point2="12,98.5"
+                    Point3="12,102.5" />
+                  <mssgle:LineSegment
+                    End="12,189.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4649,31 +4662,19 @@ INNER JOIN (SELECT
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Data Conversion Output]"
-          TopLeft="650.5,384">
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[OLE DB Source Output]"
+          TopLeft="650.75,226">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="12,220"
+              EndConnector="0,138"
               Start="0,0"
-              End="12,212.5">
+              End="0,130.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,106" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,106"
-                    Point2="0,110"
-                    Point3="4,110" />
-                  <mssgle:LineSegment
-                    End="8,110" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8,110"
-                    Point2="12,110"
-                    Point3="12,114" />
-                  <mssgle:LineSegment
-                    End="12,212.5" />
+                    End="0,130.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>

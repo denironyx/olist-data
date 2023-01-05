@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="37"
-  DTS:VersionGUID="{CFE5808F-8A81-4909-820E-6CA9022E2A6E}">
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{0FAB53CA-F0EC-4F9D-8046-801D7F5A9CB3}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -39,7 +39,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="ETL_NAME">
       <DTS:VariableValue
-        DTS:DataType="8">DW ETL ID: 1/4/2023 8:30:29 PM</DTS:VariableValue>
+        DTS:DataType="8">DW ETL ID: 1/4/2023 9:52:10 PM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -70,7 +70,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Customer"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -86,7 +86,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Date"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -102,7 +102,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Payment"
-          DTS:ThreadHint="3">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -118,7 +118,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Product"
-          DTS:ThreadHint="4">
+          DTS:ThreadHint="3">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -134,7 +134,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim Seller"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="4">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -6482,7 +6482,7 @@ where [refTable].[bk_payment] = ?</property>
                     <output
                       refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
-                      errorRowDisposition="IgnoreFailure"
+                      errorRowDisposition="FailComponent"
                       exclusionGroup="1"
                       name="Lookup Match Output"
                       synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Inputs[Lookup Input]">
@@ -6493,7 +6493,7 @@ where [refTable].[bk_payment] = ?</property>
                           errorOrTruncationOperation="Copy Column"
                           lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Payment FK.Outputs[Lookup Match Output].Columns[sk_payment]"
                           name="sk_payment"
-                          truncationRowDisposition="IgnoreFailure">
+                          truncationRowDisposition="FailComponent">
                           <properties>
                             <property
                               dataType="System.String"
@@ -6645,7 +6645,7 @@ where [refTable].[bk_product] = ?</property>
                     <output
                       refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output]"
                       errorOrTruncationOperation="Lookup"
-                      errorRowDisposition="IgnoreFailure"
+                      errorRowDisposition="RedirectRow"
                       exclusionGroup="1"
                       name="Lookup Match Output"
                       synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Inputs[Lookup Input]">
@@ -6656,7 +6656,7 @@ where [refTable].[bk_product] = ?</property>
                           errorOrTruncationOperation="Copy Column"
                           lineageId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Match Output].Columns[sk_product]"
                           name="sk_product"
-                          truncationRowDisposition="IgnoreFailure">
+                          truncationRowDisposition="RedirectRow">
                           <properties>
                             <property
                               dataType="System.String"
@@ -6892,6 +6892,30 @@ where [refTable].[bk_seller] = ?</property>
                       deleteOutputOnPathDetached="true"
                       name="Multicast Output 3"
                       synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast 1"
+                  componentClassID="Microsoft.Multicast"
+                  contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+                  name="Multicast 1">
+                  <inputs>
+                    <input
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast 1.Inputs[Multicast Input 1]"
+                      name="Multicast Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast 1.Outputs[Multicast Output 1]"
+                      dangling="true"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 1"
+                      synchronousInputId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast 1.Inputs[Multicast Input 1]">
                       <externalMetadataColumns />
                     </output>
                   </outputs>
@@ -7326,6 +7350,11 @@ where [refTable].[bk_seller] = ?</property>
                 </component>
               </components>
               <paths>
+                <path
+                  refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Error Output]"
+                  endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast 1.Inputs[Multicast Input 1]"
+                  name="Lookup Error Output"
+                  startId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Product SCD FK.Outputs[Lookup Error Output]" />
                 <path
                   refId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Match Output]"
                   endId="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Lookup for Customer scd FK.Inputs[Lookup Input]"
@@ -9758,6 +9787,46 @@ where [refTable].[bk_seller] = ?</property>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
               BoundingBox="-48.19138671875,37.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales\Multicast 1"
+          TopLeft="694,740" />
+        <EdgeLayout
+          Id="Package\Load the Fact table to the Data Warehouse\Load Fact Sales.Paths[Lookup Error Output]"
+          TopLeft="602,751">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="92,10"
+              Start="0,0"
+              End="84.5,10">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="42,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="42,0"
+                    Point2="46,0"
+                    Point3="46,4" />
+                  <mssgle:LineSegment
+                    End="46,6" />
+                  <mssgle:CubicBezierSegment
+                    Point1="46,6"
+                    Point2="46,10"
+                    Point3="50,10" />
+                  <mssgle:LineSegment
+                    End="84.5,10" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8.73503906250001,-22,109.470078125,16"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
