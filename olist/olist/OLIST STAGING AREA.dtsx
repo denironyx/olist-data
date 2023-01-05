@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="85"
-  DTS:VersionGUID="{9574ED7E-AB3E-4345-ACFE-06173D2CEFD6}">
+  DTS:VersionBuild="86"
+  DTS:VersionGUID="{62540A6F-31A3-48D7-B754-693A4AFB4864}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -803,7 +803,7 @@
       DTS:Namespace="User"
       DTS:ObjectName="ETL_NAME">
       <DTS:VariableValue
-        DTS:DataType="8">STG ETL ID: 1/1/2023 3:21:39 PM</DTS:VariableValue>
+        DTS:DataType="8">STG ETL ID: 1/5/2023 12:25:46 AM</DTS:VariableValue>
     </DTS:Variable>
     <DTS:Variable
       DTS:CreationName=""
@@ -843,7 +843,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_Customer"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -859,7 +859,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_Date"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -875,7 +875,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="Delete Dim_Payment"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -3435,6 +3435,133 @@ LEFT JOIN product_category pc ON p.product_category_name =  pc.product_category_
                   </outputs>
                 </component>
                 <component
+                  refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                  name="Filter to remove old records"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Inputs[Conditional Split Input].Columns[new_purchase_date]"
+                          cachedDataType="date"
+                          cachedName="new_purchase_date"
+                          lineageId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Convert Timestamp to Date.Outputs[Data Conversion Output].Columns[new_purchase_date]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[RECENT Records]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="RECENT Records"
+                      synchronousInputId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">#{Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Convert Timestamp to Date.Outputs[Data Conversion Output].Columns[new_purchase_date]} &gt; @[User::latest_sales_loaded_date]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">new_purchase_date &gt; @[User::latest_sales_loaded_date]</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[Older Records]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Older Records"
+                      synchronousInputId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast"
+                  componentClassID="Microsoft.Multicast"
+                  contactInfo="Multicast;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Distributes every input row to every row in one or more outputs. For example, branch your data flow to make a copy of data so that some values can be masked before sharing with external partners."
+                  name="Multicast">
+                  <inputs>
+                    <input
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Inputs[Multicast Input 1]"
+                      name="Multicast Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Outputs[Multicast Output 1]"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 1"
+                      synchronousInputId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Outputs[Multicast Output 2]"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 2"
+                      synchronousInputId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Outputs[Multicast Output 3]"
+                      dangling="true"
+                      deleteOutputOnPathDetached="true"
+                      name="Multicast Output 3"
+                      synchronousInputId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Inputs[Multicast Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
                   refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\OLE DB Destination"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
@@ -3862,18 +3989,62 @@ INNER JOIN (SELECT
                     </output>
                   </outputs>
                 </component>
+                <component
+                  refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Row Count"
+                  componentClassID="Microsoft.RowCount"
+                  contactInfo="Row Count;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Counts rows as they pass through a data flow. For example, use the number of rows processed to determine whether or not to perform cleanup operations, or update text in an e-mail message to communicate processing status."
+                  name="Row Count">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable to hold the row count."
+                      name="VariableName">User::FACT_ROW_COUNT</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Row Count.Inputs[Row Count Input 1]"
+                      hasSideEffects="true"
+                      name="Row Count Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Row Count.Outputs[Row Count Output 1]"
+                      name="Row Count Output 1"
+                      synchronousInputId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Row Count.Inputs[Row Count Input 1]">
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
               </components>
               <paths>
                 <path
                   refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Data Conversion Output]"
-                  endId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  endId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Inputs[Conditional Split Input]"
                   name="Data Conversion Output"
                   startId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Convert Timestamp to Date.Outputs[Data Conversion Output]" />
+                <path
+                  refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Multicast Output 1]"
+                  endId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="Multicast Output 1"
+                  startId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Outputs[Multicast Output 1]" />
+                <path
+                  refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Multicast Output 2]"
+                  endId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Row Count.Inputs[Row Count Input 1]"
+                  name="Multicast Output 2"
+                  startId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Outputs[Multicast Output 2]" />
                 <path
                   refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[OLE DB Source Output]"
                   endId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Convert Timestamp to Date.Inputs[Data Conversion Input]"
                   name="OLE DB Source Output"
                   startId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\OLE DB Source.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[RECENT Records]"
+                  endId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast.Inputs[Multicast Input 1]"
+                  name="RECENT Records"
+                  startId="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records.Outputs[RECENT Records]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
@@ -4352,7 +4523,7 @@ INNER JOIN (SELECT
     design-time-name="Package\Load Dimension and Fact Data to Staging Area\Load Dim Date">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Dim Date\OLE DB Destination"
@@ -4392,7 +4563,9 @@ INNER JOIN (SELECT
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4415,7 +4588,7 @@ INNER JOIN (SELECT
     design-time-name="Package\Load Dimension and Fact Data to Staging Area\Load Dim Payments">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Dim Payments\OLE DB Destination"
@@ -4443,7 +4616,9 @@ INNER JOIN (SELECT
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4479,7 +4654,7 @@ INNER JOIN (SELECT
     design-time-name="Package\Load Dimension and Fact Data to Staging Area\Load Dim Product">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Dim Product\OLE DB Source"
@@ -4507,7 +4682,9 @@ INNER JOIN (SELECT
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4538,7 +4715,7 @@ INNER JOIN (SELECT
     design-time-name="Package\Load Dimension and Fact Data to Staging Area\Load Dim Seller">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Dim Seller\OLE DB Source"
@@ -4578,7 +4755,9 @@ INNER JOIN (SELECT
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -4614,7 +4793,7 @@ INNER JOIN (SELECT
     design-time-name="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="171,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\OLE DB Destination"
@@ -4622,37 +4801,25 @@ INNER JOIN (SELECT
         <NodeLayout
           Size="209,43"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Convert Timestamp to Date"
-          TopLeft="546,364" />
+          TopLeft="546,316" />
         <NodeLayout
           Size="150,42"
           Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\OLE DB Source"
-          TopLeft="576,184" />
+          TopLeft="577,148" />
         <EdgeLayout
-          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Data Conversion Output]"
-          TopLeft="650.5,407">
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[OLE DB Source Output]"
+          TopLeft="651.25,190">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="12,197"
+              EndConnector="0,126"
               Start="0,0"
-              End="12,189.5">
+              End="0,118.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,94.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,94.5"
-                    Point2="0,98.5"
-                    Point3="4,98.5" />
-                  <mssgle:LineSegment
-                    End="8,98.5" />
-                  <mssgle:CubicBezierSegment
-                    Point1="8,98.5"
-                    Point2="12,98.5"
-                    Point3="12,102.5" />
-                  <mssgle:LineSegment
-                    End="12,189.5" />
+                    End="0,118.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4661,20 +4828,148 @@ INNER JOIN (SELECT
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="209,42"
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Filter to remove old records"
+          TopLeft="576,429" />
         <EdgeLayout
-          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[OLE DB Source Output]"
-          TopLeft="650.75,226">
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Data Conversion Output]"
+          TopLeft="650.5,359">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,138"
+              EndConnector="30,70"
               Start="0,0"
-              End="0,130.5">
+              End="30,62.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,130.5" />
+                    End="0,31" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31"
+                    Point2="0,35"
+                    Point3="4,35" />
+                  <mssgle:LineSegment
+                    End="26,35" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26,35"
+                    Point2="30,35"
+                    Point3="30,39" />
+                  <mssgle:LineSegment
+                    End="30,62.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Multicast"
+          TopLeft="593,521" />
+        <EdgeLayout
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[RECENT Records]"
+          TopLeft="680.5,471">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-27.5,50"
+              Start="0,0"
+              End="-27.5,42.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21"
+                    Point2="0,25"
+                    Point3="-4,25" />
+                  <mssgle:LineSegment
+                    End="-23.5,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-23.5,25"
+                    Point2="-27.5,25"
+                    Point3="-27.5,29" />
+                  <mssgle:LineSegment
+                    End="-27.5,42.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-51.377578125,30,75.25515625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Multicast Output 1]"
+          TopLeft="653,563">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="9.5,41"
+              Start="0,0"
+              End="9.5,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="4,20.5" />
+                  <mssgle:LineSegment
+                    End="5.5,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="5.5,20.5"
+                    Point2="9.5,20.5"
+                    Point3="9.5,24.5" />
+                  <mssgle:LineSegment
+                    End="9.5,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales\Row Count"
+          TopLeft="896,625" />
+        <EdgeLayout
+          Id="Package\Load Dimension and Fact Data to Staging Area\Load Fact Sales.Paths[Multicast Output 2]"
+          TopLeft="671.666666666667,563">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="289.333333333333,62"
+              Start="0,0"
+              End="289.333333333333,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2894736842105" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.2894736842105"
+                    Point2="0,25.2894736842105"
+                    Point3="4,25.2894736842105" />
+                  <mssgle:LineSegment
+                    End="285.333333333333,25.2894736842105" />
+                  <mssgle:CubicBezierSegment
+                    Point1="285.333333333333,25.2894736842105"
+                    Point2="289.333333333333,25.2894736842105"
+                    Point3="289.333333333333,29.2894736842105" />
+                  <mssgle:LineSegment
+                    End="289.333333333333,54.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
